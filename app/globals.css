@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-jost: 'Jost', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream-50 text-stone-700 font-sans;
+    background-color: #fdfaf5;
+  }
+
+  ::selection {
+    background-color: #e8d5a3;
+    color: #2c2417;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Gold shimmer text effect */
+  .text-gold-shimmer {
+    background: linear-gradient(
+      90deg,
+      #c9a96e 0%,
+      #e8d5a3 40%,
+      #c9a96e 60%,
+      #a07850 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* Delicate line separator */
+  .divider-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4b896, transparent);
+  }
+
+  /* Book card glow on hover */
+  .book-glow {
+    transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .book-glow:hover {
+    box-shadow: 0 20px 60px rgba(180, 140, 80, 0.22),
+                0 8px 24px rgba(180, 140, 80, 0.12);
+    transform: translateY(-6px) scale(1.02);
+  }
+
+  /* Magnetic button base */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center overflow-hidden;
+    @apply border border-gold-300 text-gold-400 bg-transparent;
+    @apply px-8 py-3 text-xs tracking-widest2 font-sans uppercase;
+    transition: color 0.4s ease, background-color 0.4s ease;
+  }
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gold-300;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover::before {
+    transform: scaleX(1);
+  }
+  .btn-primary:hover {
+    @apply text-stone-800;
+  }
+  .btn-primary span {
+    @apply relative z-10;
+  }
+
+  /* Scroll fade-in utility */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #faf4e8;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4b896;
+  border-radius: 3px;
+}
